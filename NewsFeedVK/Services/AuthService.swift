@@ -14,10 +14,16 @@ protocol AuthServiceDelegate: AnyObject {
     func authServiceSingInDidFail()
 }
 
-class AuthService: NSObject, VKSdkDelegate, VKSdkUIDelegate {
+final class AuthService: NSObject, VKSdkDelegate, VKSdkUIDelegate {
     
     private let appId = "7968132"
     private let vkSdk: VKSdk
+    
+    weak var delegate: AuthServiceDelegate?
+    
+    var token: String? {
+        return VKSdk.accessToken()?.accessToken
+    }
     
     override init() {
         vkSdk = VKSdk.initialize(withAppId: appId)
@@ -26,8 +32,6 @@ class AuthService: NSObject, VKSdkDelegate, VKSdkUIDelegate {
         vkSdk.register(self)
         vkSdk.uiDelegate = self
     }
-    
-    weak var delegate: AuthServiceDelegate?
     
     func wakeUpSession() {
         let scope = ["offline"]
