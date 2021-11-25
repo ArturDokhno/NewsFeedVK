@@ -40,7 +40,7 @@
                         </subviews>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gjZ-Ss-wJZ">
-                        <rect key="frame" x="20" y="55" width="374" height="113"/>
+                        <rect key="frame" x="20" y="55" width="374" height="52"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <nil key="textColor"/>
@@ -120,6 +120,10 @@
                             </view>
                         </subviews>
                     </view>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0QC-5X-WtR" customClass="WebImageView" customModule="NewsFeedVK" customModuleProvider="target">
+                        <rect key="frame" x="20" y="115" width="374" height="53"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    </imageView>
                 </subviews>
             </tableViewCellContentView>
             <connections>
@@ -128,6 +132,7 @@
                 <outlet property="iconImageView" destination="rvD-ej-H8l" id="V44-IU-IW9"/>
                 <outlet property="likesLabel" destination="ENy-Rt-yPA" id="tuN-6G-NBC"/>
                 <outlet property="nameLabel" destination="ZRX-bo-FzX" id="GWj-DJ-GWu"/>
+                <outlet property="postImageView" destination="0QC-5X-WtR" id="4cT-lF-ZQS"/>
                 <outlet property="postLabel" destination="gjZ-Ss-wJZ" id="EcP-we-3O3"/>
                 <outlet property="sharesLabel" destination="dIL-Hh-d8V" id="qRX-cw-FCJ"/>
                 <outlet property="viewsLabel" destination="wNl-cB-JQD" id="fXM-TI-TZJ"/>

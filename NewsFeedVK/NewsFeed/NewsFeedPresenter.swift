@@ -46,6 +46,8 @@ class NewsFeedPresenter: NewsFeedPresentationLogic {
                                       profiles: profiles,
                                       groups: groups)
         
+        let photoAttachement = self.photoAttachement(feedItem: feedItem)
+        
         let date = Date(timeIntervalSince1970: feedItem.date)
         let dateTitle = dateFormater.string(from: date)
         
@@ -56,7 +58,8 @@ class NewsFeedPresenter: NewsFeedPresentationLogic {
                                        likes: String(feedItem.likes?.count ?? 0),
                                        comments: String(feedItem.comments?.count ?? 0),
                                        shares: String(feedItem.reposts?.count ?? 0),
-                                       views: String(feedItem.views?.count ?? 0))
+                                       views: String(feedItem.views?.count ?? 0),
+                                       photoAttachement: photoAttachement)
     }
     
     private func profile(for sourseId: Int,
@@ -68,6 +71,17 @@ class NewsFeedPresenter: NewsFeedPresentationLogic {
             myprofileRepresenatable.id == normalSourseId
         }
         return profileRepresenatable!
+    }
+    
+    private func photoAttachement(feedItem: FeedItem) -> FeedViewModel.FeedCellPhotoAttachement? {
+        guard let photo = feedItem.attachments?.compactMap({ (attachment) in
+            attachment.photo
+        }), let firstPhoto = photo.first else {
+            return nil
+        }
+        return FeedViewModel.FeedCellPhotoAttachement.init(photoUrlString: firstPhoto.srcBIG,
+                                                           width: firstPhoto.width,
+                                                           height: firstPhoto.height)
     }
     
 }
