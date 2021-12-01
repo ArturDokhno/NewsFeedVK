@@ -13,7 +13,10 @@ protocol NewsFeedPresentationLogic {
 }
 
 class NewsFeedPresenter: NewsFeedPresentationLogic {
+    
     weak var viewController: NewsFeedDisplayLogic?
+    
+    var cellLayoutCalculator: FeedCellCalcilatorProtocol = FeedCellLayoutCalculator()
     
     let dateFormater: DateFormatter = {
         let dt = DateFormatter()
@@ -51,6 +54,8 @@ class NewsFeedPresenter: NewsFeedPresentationLogic {
         let date = Date(timeIntervalSince1970: feedItem.date)
         let dateTitle = dateFormater.string(from: date)
         
+        let sizes = cellLayoutCalculator.sizes(postText: feedItem.text, photoAttechment: photoAttachement)
+        
         return FeedViewModel.Cell.init(iconUrlString: profile.photo,
                                        name: profile.name,
                                        date: dateTitle,
@@ -59,7 +64,8 @@ class NewsFeedPresenter: NewsFeedPresentationLogic {
                                        comments: String(feedItem.comments?.count ?? 0),
                                        shares: String(feedItem.reposts?.count ?? 0),
                                        views: String(feedItem.views?.count ?? 0),
-                                       photoAttachement: photoAttachement)
+                                       photoAttachement: photoAttachement,
+                                       sizes: sizes)
     }
     
     private func profile(for sourseId: Int,

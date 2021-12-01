@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol NewsFeedDisplayLogic: class {
+protocol NewsFeedDisplayLogic: AnyObject {
     func displayData(viewModel: NewsFeed.Model.ViewModel.ViewModelData)
 }
 
@@ -58,6 +58,11 @@ class NewsFeedViewController: UIViewController, NewsFeedDisplayLogic {
         setup()
         
         table.register(UINib(nibName: "NewsFeedCell", bundle: nil), forCellReuseIdentifier: NewsFeedCell.reuseId)
+        
+        table.separatorStyle = .none
+//        table.backgroundColor = .clear
+//        view.backgroundColor = .darkGray
+        
         interactor?.makeRequest(request: NewsFeed.Model.Request.RequestType.getNewsFeed)
     }
     

@@ -18,6 +18,12 @@ protocol FeedCellViewModel {
     var shares: String? { get }
     var views: String? { get }
     var photoAttachement: FeddCellPhotoAttachementViewModel? { get }
+    var sizes: FeedCellSizes { get }
+}
+
+protocol FeedCellSizes {
+    var postLabelText: CGRect { get }
+    var attachmentFram: CGRect { get }
 }
 
 protocol FeddCellPhotoAttachementViewModel {
@@ -30,6 +36,7 @@ class NewsFeedCell: UITableViewCell {
     
     static let reuseId = "NewsFeedCell"
     
+    @IBOutlet weak var cardView: UIView!
     @IBOutlet weak var iconImageView: WebImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
@@ -46,8 +53,15 @@ class NewsFeedCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        self.iconImageView.layer.cornerRadius = self.iconImageView.frame.width / 2
-        self.iconImageView.clipsToBounds = true
+        
+        iconImageView.layer.cornerRadius = self.iconImageView.frame.width / 2
+        iconImageView.clipsToBounds = true
+        
+//        cardView.layer.cornerRadius = 10
+//        cardView.clipsToBounds = true
+//
+//        backgroundColor = .clear
+        selectionStyle = .none
     }
     
     func set(viewModel: FeedCellViewModel) {
@@ -59,6 +73,9 @@ class NewsFeedCell: UITableViewCell {
         commentsLabel.text = viewModel.comments
         sharesLabel.text = viewModel.shares
         viewsLabel.text = viewModel.views
+        
+        postLabel.frame = viewModel.sizes.postLabelText
+        postImageView.frame = viewModel.sizes.attachmentFram
         
         if let photoAttachment = viewModel.photoAttachement {
             postImageView.set(imageURL: photoAttachment.photoUrlString)

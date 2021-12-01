@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		196ED6A5D08551E58FE92716 /* Pods_NewsFeedVK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9452E873214172DC8E2D5004 /* Pods_NewsFeedVK.framework */; };
+		750994F427578ADF002DBAF2 /* FeedCellLayoutCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750994F327578ADF002DBAF2 /* FeedCellLayoutCalculator.swift */; };
 		7520DDDE273ABA22005DB904 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7520DDDD273ABA22005DB904 /* AppDelegate.swift */; };
 		7520DDE0273ABA22005DB904 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7520DDDF273ABA22005DB904 /* SceneDelegate.swift */; };
 		7520DDE2273ABA22005DB904 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7520DDE1273ABA22005DB904 /* AuthViewController.swift */; };
@@ -32,6 +33,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		750994F327578ADF002DBAF2 /* FeedCellLayoutCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCellLayoutCalculator.swift; sourceTree = "<group>"; };
 		7520DDDA273ABA22005DB904 /* NewsFeedVK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewsFeedVK.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7520DDDD273ABA22005DB904 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7520DDDF273ABA22005DB904 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 		75991DC1273D5E0C0080A0F4 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				750994F327578ADF002DBAF2 /* FeedCellLayoutCalculator.swift */,
 				75991DC2273D5E260080A0F4 /* NewsFeedCell.swift */,
 				75991DC5273D5E6F0080A0F4 /* NewsFeedCell.xib */,
 			);
@@ -310,6 +313,7 @@
 				7565A988273AD3B8007D8F4E /* NetworkService.swift in Sources */,
 				75319DDD273C2B4600113E00 /* NetworkDataFetcher.swift in Sources */,
 				75991DB7273D44A70080A0F4 /* NewsFeedWorker.swift in Sources */,
+				750994F427578ADF002DBAF2 /* FeedCellLayoutCalculator.swift in Sources */,
 				75CE3A42274FB76B00798530 /* WebImageView.swift in Sources */,
 				75991DB8273D44A70080A0F4 /* NewsFeedRouter.swift in Sources */,
 				7520DDF2273AC01A005DB904 /* AuthService.swift in Sources */,
