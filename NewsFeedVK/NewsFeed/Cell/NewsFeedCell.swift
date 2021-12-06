@@ -24,6 +24,8 @@ protocol FeedCellViewModel {
 protocol FeedCellSizes {
     var postLabelText: CGRect { get }
     var attachmentFram: CGRect { get }
+    var bottonViewFrame: CGRect { get }
+    var totalHeight: CGFloat { get }
 }
 
 protocol FeddCellPhotoAttachementViewModel {
@@ -46,8 +48,9 @@ class NewsFeedCell: UITableViewCell {
     @IBOutlet weak var commentsLabel: UILabel!
     @IBOutlet weak var sharesLabel: UILabel!
     @IBOutlet weak var viewsLabel: UILabel!
+    @IBOutlet var buttinView: UIView!
     
-    override class func awakeFromNib() {
+    override func awakeFromNib() {
         super.awakeFromNib()
     }
     
@@ -57,11 +60,8 @@ class NewsFeedCell: UITableViewCell {
         iconImageView.layer.cornerRadius = self.iconImageView.frame.width / 2
         iconImageView.clipsToBounds = true
         
-//        cardView.layer.cornerRadius = 10
-//        cardView.clipsToBounds = true
-//
-//        backgroundColor = .clear
-        selectionStyle = .none
+        iconImageView.set(imageURL: nil)
+        postImageView.set(imageURL: nil)
     }
     
     func set(viewModel: FeedCellViewModel) {
@@ -76,6 +76,7 @@ class NewsFeedCell: UITableViewCell {
         
         postLabel.frame = viewModel.sizes.postLabelText
         postImageView.frame = viewModel.sizes.attachmentFram
+        buttinView.frame = viewModel.sizes.bottonViewFrame
         
         if let photoAttachment = viewModel.photoAttachement {
             postImageView.set(imageURL: photoAttachment.photoUrlString)
