@@ -18,6 +18,14 @@ protocol FeedCellViewModel {
     var shares: String? { get }
     var views: String? { get }
     var photoAttachement: FeddCellPhotoAttachementViewModel? { get }
+    var sizes: FeedCellSizes { get }
+}
+
+protocol FeedCellSizes {
+    var postLabelText: CGRect { get }
+    var attachmentFram: CGRect { get }
+    var bottonViewFrame: CGRect { get }
+    var totalHeight: CGFloat { get }
 }
 
 protocol FeddCellPhotoAttachementViewModel {
@@ -30,6 +38,7 @@ class NewsFeedCell: UITableViewCell {
     
     static let reuseId = "NewsFeedCell"
     
+    @IBOutlet weak var cardView: UIView!
     @IBOutlet weak var iconImageView: WebImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
@@ -39,15 +48,20 @@ class NewsFeedCell: UITableViewCell {
     @IBOutlet weak var commentsLabel: UILabel!
     @IBOutlet weak var sharesLabel: UILabel!
     @IBOutlet weak var viewsLabel: UILabel!
+    @IBOutlet var buttinView: UIView!
     
-    override class func awakeFromNib() {
+    override func awakeFromNib() {
         super.awakeFromNib()
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        self.iconImageView.layer.cornerRadius = self.iconImageView.frame.width / 2
-        self.iconImageView.clipsToBounds = true
+        
+        iconImageView.layer.cornerRadius = self.iconImageView.frame.width / 2
+        iconImageView.clipsToBounds = true
+        
+        iconImageView.set(imageURL: nil)
+        postImageView.set(imageURL: nil)
     }
     
     func set(viewModel: FeedCellViewModel) {
@@ -59,6 +73,10 @@ class NewsFeedCell: UITableViewCell {
         commentsLabel.text = viewModel.comments
         sharesLabel.text = viewModel.shares
         viewsLabel.text = viewModel.views
+        
+        postLabel.frame = viewModel.sizes.postLabelText
+        postImageView.frame = viewModel.sizes.attachmentFram
+        buttinView.frame = viewModel.sizes.bottonViewFrame
         
         if let photoAttachment = viewModel.photoAttachement {
             postImageView.set(imageURL: photoAttachment.photoUrlString)

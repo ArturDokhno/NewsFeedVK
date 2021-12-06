@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol NewsFeedDisplayLogic: class {
+protocol NewsFeedDisplayLogic: AnyObject {
     func displayData(viewModel: NewsFeed.Model.ViewModel.ViewModelData)
 }
 
@@ -58,6 +58,9 @@ class NewsFeedViewController: UIViewController, NewsFeedDisplayLogic {
         setup()
         
         table.register(UINib(nibName: "NewsFeedCell", bundle: nil), forCellReuseIdentifier: NewsFeedCell.reuseId)
+        
+        table.separatorStyle = .none
+        
         interactor?.makeRequest(request: NewsFeed.Model.Request.RequestType.getNewsFeed)
     }
     
@@ -86,7 +89,8 @@ extension NewsFeedViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 212
+        let cellViewModel = feedViewModel.cells[indexPath.row]
+        return cellViewModel.sizes.totalHeight
     }
     
 }
